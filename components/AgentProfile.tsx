@@ -39,7 +39,7 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
   if (selectedSubmission) {
     const s = selectedSubmission;
     return (
-      <div className="w-full max-w-7xl mx-auto bg-white shadow-xl overflow-hidden animate-[fadeIn_0.5s_ease-out] flex flex-col min-h-screen">
+      <div className="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden animate-[fadeIn_0.5s_ease-out] my-4 flex flex-col h-[90vh]">
         <div className={`bg-[#003B5C] p-3 flex items-center justify-between text-white shadow-md z-10 transition-transform duration-300 sticky top-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
           <button onClick={() => setSelectedId(null)} className="flex items-center gap-1 text-xs font-bold opacity-80 hover:opacity-100 transition-opacity">
             ← Voltar para Lista
@@ -118,7 +118,7 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
 
   // --- List View ---
   return (
-    <div className="w-full max-w-7xl mx-auto bg-white shadow-xl overflow-hidden animate-[fadeIn_0.5s_ease-out] flex flex-col min-h-screen">
+    <div className="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden animate-[fadeIn_0.5s_ease-out] my-8 flex flex-col h-[90vh]">
       <div className={`bg-[#003B5C] p-6 text-white flex items-center justify-between shadow-md z-10 transition-transform duration-300 sticky top-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div>
            <h1 className="text-2xl font-bold">Portal do Agente</h1>
@@ -129,13 +129,8 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
                 <p className="text-sm font-bold">Agente Master</p>
                 <button onClick={onBack} className="text-[10px] underline opacity-80 hover:opacity-100">Sair</button>
             </div>
-            <div className="w-12 h-12 rounded-full border-2 border-green-400 overflow-hidden bg-white shadow-lg">
-                {/* Substituir a URL abaixo pela imagem do seu sticker se tiver uma URL pública */}
-                <img 
-                  src="https://img.freepik.com/premium-vector/man-character-with-afro-hairstyle-glasses_1184158-47.jpg?w=740" 
-                  alt="Agente" 
-                  className="w-full h-full object-cover object-top" 
-                />
+            <div className="w-10 h-10 rounded-full border-2 border-green-400 overflow-hidden bg-white">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Agente" className="w-full h-full object-cover object-top" />
             </div>
         </div>
       </div>

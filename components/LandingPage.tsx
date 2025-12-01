@@ -15,24 +15,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         }}
       >
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        
+        {/* Gradiente para esmaecer a imagem em branco */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/3 md:h-1/2 bg-gradient-to-t from-white to-transparent"></div>
+        
         <div className="relative z-10 flex flex-col items-center w-full">
-          
-          {/* Logo e Slogan Agrupados */}
-          <div className="flex flex-col items-center justify-center">
-            <HeaderLogo showSubtitle={false} />
-            {/* Slogan ajustado para caber abaixo do logo */}
-            <p className="text-teal-50 text-[6px] sm:text-[8px] font-bold tracking-widest uppercase -mt-2 md:-mt-4 text-center leading-tight opacity-90 border-t border-white/20 pt-1 whitespace-nowrap">
-              Plataforma inteligente para viajantes modernos
-            </p>
-          </div>
-
-          {/* Título movido para baixo e redimensionado para igualar a logo */}
+          <HeaderLogo showSubtitle={false} />
           <h1 
-            className="w-full text-center text-2xl sm:text-3xl md:text-4xl mt-12 md:mt-16 mb-4 drop-shadow-lg leading-tight italic text-white px-4"
-            style={{ fontFamily: "'Permanent Marker', cursive", transform: "rotate(-2deg)" }}
+            className="w-full text-center text-xs sm:text-4xl md:text-6xl lg:text-7xl mb-2 mt-2 md:mb-6 md:mt-6 drop-shadow-lg leading-tight italic whitespace-nowrap"
+            style={{ fontFamily: "'Permanent Marker', cursive", transform: "rotate(-1deg)" }}
           >
             Sua jornada começa aqui.
           </h1>
+          <p className="text-xs sm:text-lg md:text-3xl opacity-100 w-full max-w-3xl mx-auto font-medium leading-relaxed mt-1 md:mt-2 whitespace-nowrap">
+            Plataforma inteligente para viajantes modernos.
+          </p>
         </div>
       </div>
 
