@@ -2,7 +2,16 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- PWA / Mobile Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#003B5C">
+    
+    <link rel="manifest" href="manifest.json">
+    
     <title>Check-in, GO! - Perfil de Viagem</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -10,6 +19,7 @@
     <style>
       body {
         font-family: 'Roboto', sans-serif;
+        overscroll-behavior-y: none; /* Prevents pull-to-refresh to feel more like an app */
       }
     </style>
     <script type="importmap">
@@ -21,6 +31,14 @@
         "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
       }
     }
+    </script>
+    <script>
+      // Script to attempt hiding the address bar on load for mobile browsers
+      window.addEventListener("load", function() {
+        setTimeout(function() {
+          window.scrollTo(0, 1);
+        }, 0);
+      });
     </script>
   </head>
   <body class="bg-gray-100 text-slate-700">

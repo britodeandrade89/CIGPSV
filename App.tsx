@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import LandingPage from './components/LandingPage';
 import AgentProfile from './components/AgentProfile';
@@ -75,7 +74,12 @@ const App: React.FC = () => {
         />
       )}
       
-      {step === 'form' && <TravelerForm onSubmit={handleFormSubmit} />}
+      {step === 'form' && (
+        <TravelerForm 
+            onSubmit={handleFormSubmit} 
+            onBack={() => setStep('landing')}
+        />
+      )}
       
       {step === 'success' && currentSubmission && (
         <SuccessScreen data={currentSubmission} onReset={handleReset} />
