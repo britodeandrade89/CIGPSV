@@ -28,7 +28,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
           {/* Título movido para baixo e redimensionado para igualar a logo */}
           <h1 
-            className="w-full text-center text-3xl md:text-4xl mt-12 md:mt-16 mb-4 drop-shadow-lg leading-tight italic whitespace-nowrap text-white"
+            className="w-full text-center text-2xl sm:text-3xl md:text-4xl mt-12 md:mt-16 mb-4 drop-shadow-lg leading-tight italic text-white px-4"
             style={{ fontFamily: "'Permanent Marker', cursive", transform: "rotate(-2deg)" }}
           >
             Sua jornada começa aqui.
