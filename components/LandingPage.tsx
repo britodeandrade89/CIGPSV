@@ -18,7 +18,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <div className="relative z-10 flex flex-col items-center w-full">
           <HeaderLogo showSubtitle={false} />
           <h1 
-            className="w-full text-right text-xs sm:text-4xl md:text-6xl lg:text-7xl mb-2 mt-2 md:mb-6 md:mt-6 drop-shadow-lg leading-tight italic pr-2 md:pr-8 whitespace-nowrap"
+            className="w-full text-center text-xs sm:text-4xl md:text-6xl lg:text-7xl mb-2 mt-2 md:mb-6 md:mt-6 drop-shadow-lg leading-tight italic whitespace-nowrap"
             style={{ fontFamily: "'Permanent Marker', cursive", transform: "rotate(-1deg)" }}
           >
             Sua jornada começa aqui.
