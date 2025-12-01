@@ -1,14 +1,15 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { DestinationSuggestion } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const getDestinationSuggestions = async (
   clima: string,
   vibe: string,
   companhia: string
 ): Promise<DestinationSuggestion[]> => {
   try {
+    const apiKey = process.env.API_KEY || 'dummy';
+    const ai = new GoogleGenAI({ apiKey });
+    
     const schema: Schema = {
       type: Type.ARRAY,
       items: {
@@ -38,7 +39,7 @@ export const getDestinationSuggestions = async (
     if (!text) return [];
     return JSON.parse(text) as DestinationSuggestion[];
   } catch (error) {
-    console.error("Error fetching suggestions:", error);
+    console.error("Error fetching suggestions or initializing AI:", error);
     // Fallback in case of error
     return [
       { name: 'Paris, França', desc: 'Clássico e romântico.', match: 95 },
@@ -49,6 +50,9 @@ export const getDestinationSuggestions = async (
 
 export const getTravelTips = async (destination: string): Promise<string[]> => {
   try {
+    const apiKey = process.env.API_KEY || 'dummy';
+    const ai = new GoogleGenAI({ apiKey });
+
     const schema: Schema = {
       type: Type.ARRAY,
       items: { type: Type.STRING },
@@ -69,7 +73,7 @@ export const getTravelTips = async (destination: string): Promise<string[]> => {
     if (!text) return [];
     return JSON.parse(text) as string[];
   } catch (error) {
-    console.error("Error fetching tips:", error);
+    console.error("Error fetching tips or initializing AI:", error);
     return ['Leve sapatos confortáveis', 'Prove a comida local', 'Chegue cedo aos pontos turísticos'];
   }
 };
