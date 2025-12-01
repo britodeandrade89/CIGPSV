@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TravelerFormData } from '../types';
 import { IconUser, IconSuitcase, IconPlane, IconBed, IconMoney, IconLink } from './Icons';
+import { useAutoHidingHeader } from '../hooks/useAutoHidingHeader';
 
 interface AgentProfileProps {
   submissions: TravelerFormData[];
@@ -9,6 +10,7 @@ interface AgentProfileProps {
 
 const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const isHeaderVisible = useAutoHidingHeader();
 
   const selectedSubmission = submissions.find(s => s.id === selectedId);
 
@@ -38,7 +40,7 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
     const s = selectedSubmission;
     return (
       <div className="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden animate-[fadeIn_0.5s_ease-out] my-4 flex flex-col h-[90vh]">
-        <div className="bg-[#003B5C] p-3 flex items-center justify-between text-white shadow-md z-10">
+        <div className={`bg-[#003B5C] p-3 flex items-center justify-between text-white shadow-md z-10 transition-transform duration-300 sticky top-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
           <button onClick={() => setSelectedId(null)} className="flex items-center gap-1 text-xs font-bold opacity-80 hover:opacity-100 transition-opacity">
             ← Voltar para Lista
           </button>
@@ -117,7 +119,7 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
   // --- List View ---
   return (
     <div className="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden animate-[fadeIn_0.5s_ease-out] my-8 flex flex-col h-[90vh]">
-      <div className="bg-[#003B5C] p-6 text-white flex items-center justify-between shadow-md z-10">
+      <div className={`bg-[#003B5C] p-6 text-white flex items-center justify-between shadow-md z-10 transition-transform duration-300 sticky top-0 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div>
            <h1 className="text-2xl font-bold">Portal do Agente</h1>
            <p className="text-xs opacity-80">Gestão de Leads e Roteiros</p>
@@ -128,7 +130,7 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
                 <button onClick={onBack} className="text-[10px] underline opacity-80 hover:opacity-100">Sair</button>
             </div>
             <div className="w-10 h-10 rounded-full border-2 border-green-400 overflow-hidden bg-white">
-                <img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=400&auto=format&fit=crop" alt="Agente" className="w-full h-full object-cover object-top" />
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Agente" className="w-full h-full object-cover object-top" />
             </div>
         </div>
       </div>

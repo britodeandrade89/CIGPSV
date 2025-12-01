@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LandingPage from './components/LandingPage';
 import AgentProfile from './components/AgentProfile';
 import TravelerForm from './components/TravelerForm';
@@ -9,16 +9,32 @@ import { IconLock } from './components/Icons';
 const App: React.FC = () => {
   const [step, setStep] = useState<AppStep>('landing');
   
-  // Stores the current submission for the Success Screen
   const [currentSubmission, setCurrentSubmission] = useState<TravelerFormData | null>(null);
   
-  // Stores ALL submissions for the Agent Profile (History)
-  const [allSubmissions, setAllSubmissions] = useState<TravelerFormData[]>([]);
+  // Initialize state from localStorage or as an empty array
+  const [allSubmissions, setAllSubmissions] = useState<TravelerFormData[]>(() => {
+    try {
+      const savedSubmissions = localStorage.getItem('allSubmissions');
+      return savedSubmissions ? JSON.parse(savedSubmissions) : [];
+    } catch (error) {
+      console.error("Failed to parse submissions from localStorage", error);
+      return [];
+    }
+  });
   
-  // State for Agent Password Modal
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+
+  // Effect to save submissions to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem('allSubmissions', JSON.stringify(allSubmissions));
+    } catch (error) {
+      console.error("Failed to save submissions to localStorage", error);
+    }
+  }, [allSubmissions]);
+
 
   const handleStart = (type: 'traveler' | 'agent') => {
     if (type === 'agent') {
@@ -41,17 +57,13 @@ const App: React.FC = () => {
   };
 
   const handleFormSubmit = (data: TravelerFormData) => {
-    // Add metadata to the submission
     const newSubmission: TravelerFormData = {
       ...data,
       id: Date.now().toString(),
       submittedAt: new Date().toISOString()
     };
-
-    // Save to history (Agent view)
-    setAllSubmissions(prev => [newSubmission, ...prev]);
     
-    // Set current for Success view
+    setAllSubmissions(prev => [newSubmission, ...prev]);
     setCurrentSubmission(newSubmission);
     
     setStep('success');

@@ -4,6 +4,8 @@ import OptionButton from './OptionButton';
 import AIDestinationFinder from './AIDestinationFinder';
 import { IconUser, IconSuitcase, IconPlane, IconBus, IconBed, IconCard, IconMoney, IconLink, IconDownload } from './Icons';
 import { TravelerFormData, DestinationSuggestion } from '../types';
+import { useAutoHidingHeader } from '../hooks/useAutoHidingHeader';
+
 
 interface TravelerFormProps {
   onSubmit: (data: TravelerFormData) => void;
@@ -11,6 +13,7 @@ interface TravelerFormProps {
 }
 
 const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
+  const isHeaderVisible = useAutoHidingHeader();
   const [formData, setFormData] = useState<TravelerFormData>({
     nome: '', whatsapp: '', viajantes: '', nivelExperiencia: '',
     tipoDestino: '', nomeDestino: '', tipoViagem: '', antecedencia: '',
@@ -66,7 +69,7 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
     <div className="w-full max-w-5xl bg-white shadow-xl overflow-hidden sm:rounded-3xl my-4 animate-[fadeIn_0.5s_ease-out]">
       {/* Header */}
       <div
-        className="bg-[#003B5C] px-4 py-2 md:py-4 text-center relative"
+        className={`bg-[#003B5C] px-4 py-2 md:py-4 text-center relative transition-transform duration-300 sticky top-0 z-20 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1549558549-415fe4c37b60?q=80&w=2019&auto=format&fit=crop')",
           backgroundSize: 'cover',
