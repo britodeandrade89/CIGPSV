@@ -128,7 +128,7 @@ const AgentProfile: React.FC<AgentProfileProps> = ({ submissions, onBack }) => {
                 <button onClick={onBack} className="text-[10px] underline opacity-80 hover:opacity-100">Sair</button>
             </div>
             <div className="w-10 h-10 rounded-full border-2 border-green-400 overflow-hidden bg-white">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Agente" className="w-full h-full object-cover object-top" />
+                <img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=400&auto=format&fit=crop" alt="Agente" className="w-full h-full object-cover object-top" />
             </div>
         </div>
       </div>
