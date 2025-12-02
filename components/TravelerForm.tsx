@@ -57,13 +57,13 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
   const SectionHeader = ({ icon: Icon, title }: { icon: any, title: string }) => (
     <div className="flex items-center gap-2 mb-2 mt-5 border-b border-gray-100 pb-1">
       <Icon className="text-emerald-500 w-5 h-5" />
-      <span className="font-extrabold text-lg text-slate-900">{title}</span>
+      <span className="font-extrabold text-lg text-slate-900 uppercase tracking-wider">{title}</span>
     </div>
   );
 
   const inputClass = "w-full px-4 py-2 border border-slate-200 rounded-full bg-white text-slate-600 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all shadow-sm text-sm";
-  // Estilo atualizado para os títulos das perguntas
-  const labelClass = "block text-sm font-bold text-slate-800 mb-2 ml-1 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200";
+  // Estilo atualizado para os títulos das perguntas com verde mais forte
+  const labelClass = "block text-sm font-bold text-emerald-900 mb-2 ml-1 bg-emerald-100 px-3 py-1.5 rounded-full border border-emerald-200";
 
   return (
     <div className="w-full max-w-5xl bg-white shadow-xl overflow-hidden sm:rounded-3xl my-4 animate-[fadeIn_0.5s_ease-out]">

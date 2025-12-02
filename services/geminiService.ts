@@ -25,7 +25,7 @@ export const getDestinationSuggestions = async (
 - Clima: ${answers.clima}
 - Vibe: ${answers.vibe}
 - Companhia: ${answers.companhia}
-- Orçamento (Expectativa de Gasto): ${answers.orcamento}
+- Orçamento (por pessoa, incluindo transporte e estadia): ${answers.orcamento}
 - Preferência de Local: ${answers.local}
 - Ambiente: ${answers.ambiente}
 

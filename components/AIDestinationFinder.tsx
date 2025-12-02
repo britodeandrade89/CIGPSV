@@ -16,7 +16,13 @@ const AIDestinationFinder: React.FC<AIDestinationFinderProps> = ({ onComplete })
     { key: 'clima', question: 'Qual clima você prefere?', options: [{ label: '☀️ Praia', val: 'praia' }, { label: '❄️ Frio', val: 'frio' }, { label: '🏙️ Urbano', val: 'urbano' }] },
     { key: 'vibe', question: 'Qual a vibe principal da viagem?', options: [{ label: '🧘 Relax', val: 'relax' }, { label: '🧗 Aventura', val: 'aventura' }, { label: '🏰 Cultura', val: 'cultura' }, { label: '🍷 Luxo', val: 'luxo' }] },
     { key: 'companhia', question: 'Quem vai com você?', options: [{ label: '💑 Casal', val: 'casal' }, { label: '👨‍👩‍👧‍👦 Família', val: 'familia' }, { label: '👯 Amigos', val: 'amigos' }, { label: '🎒 Solo', val: 'solo' }] },
-    { key: 'orcamento', question: 'Qual sua expectativa de gasto por pessoa?', options: [{ label: '💰 Até R$1.500', val: 'ate 1500 BRL' }, { label: '💸 Até R$3.000', val: 'ate 3000 BRL' }, { label: '💵 Até R$7.000', val: 'ate 7000 BRL' }, { label: '💎 Acima de R$7.000', val: 'acima de 7000 BRL' }] },
+    { key: 'orcamento', question: 'Qual sua expectativa de gasto (por pessoa, aéreo + estadia)?', options: [
+      { label: '💰 Até R$1.500', val: 'ate 1500 BRL' }, 
+      { label: '💸 Até R$3.000', val: 'ate 3000 BRL' }, 
+      { label: '💵 Até R$5.000', val: 'ate 5000 BRL' },
+      { label: '💎 Até R$7.000', val: 'ate 7000 BRL' },
+      { label: '✨ Acima de R$7.000', val: 'acima de 7000 BRL' }
+    ] },
     { key: 'local', question: 'Você prefere destinos...', options: [{ label: '🇧🇷 Nacionais', val: 'nacional' }, { label: '✈️ Internacionais', val: 'internacional' }, { label: '🤔 Indiferente', val: 'indiferente' }] },
     { key: 'ambiente', question: 'E o tipo de turismo?', options: [{ label: '🏞️ Interior / Natureza', val: 'interior' }, { label: '🏙️ Urbano / Cidade', val: 'urbano' }, { label: '🤝 Ambos', val: 'ambos' }] }
   ];
