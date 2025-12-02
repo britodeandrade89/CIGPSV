@@ -2,9 +2,7 @@ import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { DestinationSuggestion } from "../types";
 
 export const getDestinationSuggestions = async (
-  clima: string,
-  vibe: string,
-  companhia: string
+  answers: Record<string, string>
 ): Promise<DestinationSuggestion[]> => {
   try {
     const apiKey = process.env.API_KEY || 'dummy';
@@ -16,14 +14,22 @@ export const getDestinationSuggestions = async (
         type: Type.OBJECT,
         properties: {
           name: { type: Type.STRING, description: "Cidade e País do destino" },
-          desc: { type: Type.STRING, description: "Breve descrição do porquê combina" },
+          desc: { type: Type.STRING, description: "Breve descrição do porquê combina com o perfil" },
           match: { type: Type.NUMBER, description: "Porcentagem de compatibilidade de 0 a 100" }
         },
         required: ["name", "desc", "match"]
       }
     };
 
-    const prompt = `Sugira 2 destinos turísticos compatíveis com o seguinte perfil: Clima ${clima}, Vibe ${vibe}, Companhia ${companhia}.`;
+    const prompt = `Sugira 2 destinos turísticos realistas e compatíveis com o seguinte perfil detalhado:
+- Clima: ${answers.clima}
+- Vibe: ${answers.vibe}
+- Companhia: ${answers.companhia}
+- Orçamento (Expectativa de Gasto): ${answers.orcamento}
+- Preferência de Local: ${answers.local}
+- Ambiente: ${answers.ambiente}
+
+**Regra Crítica**: O orçamento é o fator mais importante. As sugestões devem ser absolutamente realistas dentro da faixa de gasto informada. Não sugira destinos caros para orçamentos baixos.`;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -42,8 +48,8 @@ export const getDestinationSuggestions = async (
     console.error("Error fetching suggestions or initializing AI:", error);
     // Fallback in case of error
     return [
-      { name: 'Paris, França', desc: 'Clássico e romântico.', match: 95 },
-      { name: 'Cancún, México', desc: 'Praias e diversão.', match: 92 }
+      { name: 'Ushuaia, Argentina', desc: 'Aventura na Patagônia com bom custo-benefício.', match: 90 },
+      { name: 'Chapada Diamantina, Brasil', desc: 'Natureza exuberante e trekking no coração da Bahia.', match: 88 }
     ];
   }
 };

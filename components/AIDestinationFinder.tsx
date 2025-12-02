@@ -14,8 +14,11 @@ const AIDestinationFinder: React.FC<AIDestinationFinderProps> = ({ onComplete })
 
   const questions = [
     { key: 'clima', question: 'Qual clima você prefere?', options: [{ label: '☀️ Praia', val: 'praia' }, { label: '❄️ Frio', val: 'frio' }, { label: '🏙️ Urbano', val: 'urbano' }] },
-    { key: 'vibe', question: 'Qual a vibe principal?', options: [{ label: '🧘 Relax', val: 'relax' }, { label: '🧗 Aventura', val: 'aventura' }, { label: '🏰 Cultura', val: 'cultura' }, { label: '🍷 Luxo', val: 'luxo' }] },
-    { key: 'companhia', question: 'Quem vai junto?', options: [{ label: '💑 Casal', val: 'casal' }, { label: '👨‍👩‍👧‍👦 Família', val: 'familia' }, { label: '👯 Amigos', val: 'amigos' }, { label: '🎒 Solo', val: 'solo' }] }
+    { key: 'vibe', question: 'Qual a vibe principal da viagem?', options: [{ label: '🧘 Relax', val: 'relax' }, { label: '🧗 Aventura', val: 'aventura' }, { label: '🏰 Cultura', val: 'cultura' }, { label: '🍷 Luxo', val: 'luxo' }] },
+    { key: 'companhia', question: 'Quem vai com você?', options: [{ label: '💑 Casal', val: 'casal' }, { label: '👨‍👩‍👧‍👦 Família', val: 'familia' }, { label: '👯 Amigos', val: 'amigos' }, { label: '🎒 Solo', val: 'solo' }] },
+    { key: 'orcamento', question: 'Qual sua expectativa de gasto por pessoa?', options: [{ label: '💰 Até R$1.500', val: 'ate 1500 BRL' }, { label: '💸 Até R$3.000', val: 'ate 3000 BRL' }, { label: '💵 Até R$7.000', val: 'ate 7000 BRL' }, { label: '💎 Acima de R$7.000', val: 'acima de 7000 BRL' }] },
+    { key: 'local', question: 'Você prefere destinos...', options: [{ label: '🇧🇷 Nacionais', val: 'nacional' }, { label: '✈️ Internacionais', val: 'internacional' }, { label: '🤔 Indiferente', val: 'indiferente' }] },
+    { key: 'ambiente', question: 'E o tipo de turismo?', options: [{ label: '🏞️ Interior / Natureza', val: 'interior' }, { label: '🏙️ Urbano / Cidade', val: 'urbano' }, { label: '🤝 Ambos', val: 'ambos' }] }
   ];
 
   const handleSelect = async (key: string, value: string) => {
@@ -25,7 +28,8 @@ const AIDestinationFinder: React.FC<AIDestinationFinderProps> = ({ onComplete })
       setStep(step + 1);
     } else {
       setAnalyzing(true);
-      const suggestions = await getDestinationSuggestions(newAnswers.clima, newAnswers.vibe, newAnswers.companhia);
+      // Passa o objeto completo de respostas para o serviço
+      const suggestions = await getDestinationSuggestions(newAnswers);
       onComplete(suggestions);
       setAnalyzing(false);
     }
@@ -35,7 +39,7 @@ const AIDestinationFinder: React.FC<AIDestinationFinderProps> = ({ onComplete })
     return (
       <div className="p-4 text-center text-teal-600 font-bold bg-white rounded-xl border border-teal-100 flex items-center justify-center gap-2">
         <IconSparkles className="animate-spin text-teal-500" />
-        Analisando perfil com IA...
+        Analisando seu perfil...
       </div>
     );
   }

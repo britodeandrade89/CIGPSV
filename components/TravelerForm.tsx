@@ -61,9 +61,9 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
     </div>
   );
 
-  // Common Input Styles - Reduced padding
   const inputClass = "w-full px-4 py-2 border border-slate-200 rounded-full bg-white text-slate-600 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all shadow-sm text-sm";
-  const labelClass = "block text-xs font-bold text-slate-700 mb-1 ml-2";
+  // Estilo atualizado para os títulos das perguntas
+  const labelClass = "block text-sm font-bold text-slate-800 mb-2 ml-1 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200";
 
   return (
     <div className="w-full max-w-5xl bg-white shadow-xl overflow-hidden sm:rounded-3xl my-4 animate-[fadeIn_0.5s_ease-out]">
@@ -78,7 +78,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
       >
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
         
-        {/* Botão Voltar */}
         <div className="absolute top-3 left-3 z-20">
             <button 
                 onClick={onBack}
@@ -103,7 +102,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
 
       <div className="p-4 md:p-6 space-y-1">
         
-        {/* Aviso de Disclaimer Atualizado */}
         <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-xs text-yellow-900 shadow-sm">
           <strong className="block mb-2 flex items-center gap-1 font-bold text-sm">⚠️ Como funciona meu trabalho:</strong>
           <p className="mb-2 leading-relaxed">
@@ -117,20 +115,17 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
           </ul>
         </div>
 
-        {/* Layout Grid para Desktop */}
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             
-            {/* Coluna Esquerda */}
             <div className="space-y-4">
-                {/* 1. Sobre Você */}
                 <SectionHeader icon={IconUser} title="Sobre Você e a Viagem" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div><label className={labelClass}>Nome</label><input type="text" name="nome" className={inputClass} onChange={handleInputChange} value={formData.nome} /></div>
-                <div><label className={labelClass}>WhatsApp</label><input type="tel" name="whatsapp" className={inputClass} onChange={handleInputChange} value={formData.whatsapp} /></div>
-                <div className="md:col-span-2"><label className={labelClass}>Quem vai viajar?</label><input type="text" name="viajantes" className={inputClass} onChange={handleInputChange} value={formData.viajantes} /></div>
+                <div><label className="block text-xs font-bold text-slate-700 mb-1 ml-2">Nome</label><input type="text" name="nome" className={inputClass} onChange={handleInputChange} value={formData.nome} /></div>
+                <div><label className="block text-xs font-bold text-slate-700 mb-1 ml-2">WhatsApp</label><input type="tel" name="whatsapp" className={inputClass} onChange={handleInputChange} value={formData.whatsapp} /></div>
+                <div className="md:col-span-2"><label className="block text-xs font-bold text-slate-700 mb-1 ml-2">Quem vai viajar?</label><input type="text" name="viajantes" className={inputClass} onChange={handleInputChange} value={formData.viajantes} /></div>
 
                 <div className="md:col-span-2 mt-1">
-                    <label className={labelClass}>Nível de Experiência</label>
+                    <label className={labelClass}>Qual seu nível de experiência em relação a viagens?</label>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <OptionButton name="nivelExperiencia" value="iniciante" label="Iniciante" checked={formData.nivelExperiencia === 'iniciante'} onChange={handleInputChange} />
                     <OptionButton name="nivelExperiencia" value="intermediario" label="Intermediário" checked={formData.nivelExperiencia === 'intermediario'} onChange={handleInputChange} />
@@ -138,7 +133,7 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                     </div>
                 </div>
                 <div className="md:col-span-2">
-                    <label className={labelClass}>Ritmo da Viagem</label>
+                    <label className={labelClass}>Qual o ritmo você costuma ter em suas viagens?</label>
                     <div className="grid grid-cols-3 gap-2">
                     <OptionButton name="ritmoViagem" value="slow" label="Lento" checked={formData.ritmoViagem === 'slow'} onChange={handleInputChange} />
                     <OptionButton name="ritmoViagem" value="equilibrado" label="Equilibrado" checked={formData.ritmoViagem === 'equilibrado'} onChange={handleInputChange} />
@@ -146,7 +141,7 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                     </div>
                 </div>
                 <div className="md:col-span-2">
-                    <label className={labelClass}>O que não pode faltar?</label>
+                    <label className={labelClass}>O que não pode faltar em uma viagem?</label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     {['Gastronomia', 'Museus/História', 'Natureza', 'Compras', 'Festas', 'Infantil', 'Fotos'].map(i =>
                         <OptionButton key={i} name="itensObrigatorios" value={i} label={i} type="checkbox" checked={formData.itensObrigatorios.includes(i)} onChange={handleInputChange} />
@@ -155,7 +150,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                 </div>
                 </div>
 
-                {/* 2. A Viagem */}
                 <SectionHeader icon={IconSuitcase} title="A Viagem" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="md:col-span-2 flex gap-2">
@@ -206,8 +200,8 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                     </div>
                 )}
 
-                <div><label className={labelClass}>Ida</label><input type="date" name="dataIda" className={`${inputClass} text-slate-500`} onChange={handleInputChange} value={formData.dataIda} /></div>
-                <div><label className={labelClass}>Volta</label><input type="date" name="dataVolta" className={`${inputClass} text-slate-500`} onChange={handleInputChange} value={formData.dataVolta} /></div>
+                <div><label className="block text-xs font-bold text-slate-700 mb-1 ml-2">Ida</label><input type="date" name="dataIda" className={`${inputClass} text-slate-500`} onChange={handleInputChange} value={formData.dataIda} /></div>
+                <div><label className="block text-xs font-bold text-slate-700 mb-1 ml-2">Volta</label><input type="date" name="dataVolta" className={`${inputClass} text-slate-500`} onChange={handleInputChange} value={formData.dataVolta} /></div>
                 <div className="md:col-span-2">
                     <label className={labelClass}>Flexibilidade de Datas <span className="text-emerald-600 font-normal text-xs">(Até 30% off!)</span></label>
                     <div className="grid grid-cols-3 gap-2">
@@ -219,9 +213,7 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                 </div>
             </div>
 
-            {/* Coluna Direita */}
             <div className="space-y-4">
-                {/* 3. Voos e Bagagem */}
                 <SectionHeader icon={IconPlane} title="Voos e Bagagem" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input type="text" name="aeroportoSaida" placeholder="Aeroporto Origem" className={inputClass} onChange={handleInputChange} value={formData.aeroportoSaida} />
@@ -248,7 +240,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                 </div>
                 </div>
 
-                {/* 4. Transporte */}
                 <SectionHeader icon={IconBus} title="Transporte no Destino" />
                 <div className="grid grid-cols-2 gap-2">
                 {['Alugar Carro', 'Uber/Táxi', 'Transfer', 'Púbico'].map(l =>
@@ -256,7 +247,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                 )}
                 </div>
 
-                {/* 5. Hospedagem */}
                 <SectionHeader icon={IconBed} title="Hospedagem" />
                 <div className="space-y-3">
                 <div>
@@ -274,7 +264,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                 </div>
                 </div>
 
-                {/* 6. Pagamento */}
                 <SectionHeader icon={IconCard} title="Pagamento" />
                 <div className="grid md:grid-cols-2 gap-3">
                 <div>
@@ -305,7 +294,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
                 </div>
                 </div>
 
-                {/* 7. Estratégia */}
                 <SectionHeader icon={IconMoney} title="Estratégia de Compra" />
                 <div className="grid grid-cols-1 gap-2">
                 <OptionButton name="estrategiaCompra" value="separado" label="Separado (quase sempre parcelado e sem juros)" checked={formData.estrategiaCompra === 'separado'} onChange={handleInputChange} />
@@ -323,7 +311,7 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
         </div>
 
         <div className="mt-4">
-          <label className={labelClass}>Observações Finais</label>
+          <label className="block text-xs font-bold text-slate-700 mb-1 ml-2">Observações Finais</label>
           <textarea
             name="obsFinais"
             rows={2}
@@ -334,7 +322,6 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ onSubmit, onBack }) => {
           ></textarea>
         </div>
 
-        {/* Submit */}
         <div className="pt-6 pb-2">
           <button
             onClick={handleSubmit}
